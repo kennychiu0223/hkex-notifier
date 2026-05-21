@@ -1,0 +1,16 @@
+{
+  "stocks": [
+    { "code": "08245", "stockId": "131915" }
+  ],
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "username": "your-email@gmail.com",
+    "password": "your-app-password",
+    "from": "your-email@gmail.com"
+  },
+  "recipients": [
+    "notify@example.com"
+  ],
+  "check_interval_hours": 1
+}
