@@ -1,4 +1,6 @@
 import logging
+import os
+from logging.handlers import RotatingFileHandler
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
@@ -6,9 +8,19 @@ import scraper
 import notifier
 import state
 
+LOG_DIR = os.environ.get("LOG_DIR", os.path.dirname(os.path.abspath(__file__)))
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[
+        logging.StreamHandler(),
+        RotatingFileHandler(
+            os.path.join(LOG_DIR, "hkex_notifier.log"),
+            maxBytes=10 * 1024 * 1024,  # 10 MB
+            backupCount=5,
+        ),
+    ],
 )
 logger = logging.getLogger("scheduler")
 
